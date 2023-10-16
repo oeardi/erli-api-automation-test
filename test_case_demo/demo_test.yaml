@@ -1,0 +1,27 @@
+title: demo_test
+description: test_run_xml/test_senario_156/debug_demo/demo_test.yaml
+
+preApis:
+  - preRequestUrl: api/core/refactor/security/beforeLoginSecurityValidation
+    preRequestHeader:
+    preReqeustBody: {
+      "loginName": "2021090893",
+      "password": "147258",
+      "merchantLoginMethod": "mobile",
+      "role": "user"
+    }
+    preEncryptFlag:
+    preDependentParameter: { "valChainId": "$data.valChainId" }
+
+testApi:
+  requestUrl: api/core/refactor/security/loginSecurityValidation
+  requestHeader:
+  reqeustBody: {
+    "merchantLoginMethod": "mobile",
+    "password": "147258",
+    "loginName": "2021090893",
+    "role": "user",
+    "userSignProtocolFlag": "1",
+    "valChainId":
+  }
+  preEncryptFlag:

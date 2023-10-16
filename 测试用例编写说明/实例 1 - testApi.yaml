@@ -1,0 +1,53 @@
+title: refactorCreateOrder 接口
+description: transfer_to 功能，由 156621090810859569 向 6110001086（256623091811377）转账 1000 奈拉。
+
+testApi:
+  requestUrl: api/refactor/order/refactorCreateOrder
+  requestHeader:
+  reqeustBody: {
+    "activityId": "",
+    "businessSource": "PAYMENT",
+    "countryCode": "NG",
+    "customerEmail": "",
+    "dataBundleId": "",
+    "details": "",
+    "displayText": {
+      "toPhone": "6110001086",
+      "toUser": "test-1-4",
+      "userInfo": "<font color=\"#1dcf9f\"><b> 6110001086</b></font>"
+    },
+    "expireTime": 0,
+    "fingerprintFeature": "",
+    "instruments": [ {
+      "payChannel": "BalancePayment"
+    } ],
+    "isUseAutoOptimal": false,
+    "isWithhold": false,
+    "message": "",
+    "newPackageCode": "",
+    "orderNo": "",
+    "payMethod": "",
+    "paymentAmount": {
+      "currency": "NGN",
+      "value": "1000"
+    },
+    "paymentPin": "1234",
+    "publicKey": "",
+    "recipientAccount": "6110001086",
+    "recipientBankCode": "100004",
+    "recipientBankName": "",
+    "recipientMobile": "",
+    "recipientName": "test-1-4",
+    "recipientPhoneNumber": "6110001086",
+    "referCode": "",
+    "reference": "",
+    "serviceId": "bank",
+    "serviceType": "bank",
+    "snapshot": "",
+    "supportBiometrics": false,
+    "useMpos": false,
+    "voucherId": ""
+  }
+  # preEncryptFlag 为保留字段，可以删除，api-user 项目暂未从此字段取值。（之前用于控制 “总代项目接口”的请求报文是否加密）
+  # preEncryptFlag:
+

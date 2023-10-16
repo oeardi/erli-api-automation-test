@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="ka_settlement" parallel="instances" thread-count="1">
+
+    <test name="transfer_to_256623101011403">
+        <parameter name="yamlFilePath"
+                   value="/test_case_yaml/test_senario_156/ka_settlement_256623101011403/transfer_to_256623101011403.yaml"/>
+        <classes>
+            <class name="com.apis.AutomatedTest"/>
+        </classes>
+    </test>
+
+    <test name="transfer_to_256623101211406">
+        <parameter name="yamlFilePath"
+                   value="/test_case_yaml/test_senario_156/ka_settlement_256623101011403/transfer_to_256623101211406.yaml"/>
+        <classes>
+            <class name="com.apis.AutomatedTest"/>
+        </classes>
+    </test>
+
+
+    <listeners>
+        <listener class-name="com.config.ExtentTestNGIReporterListener"/>
+    </listeners>
+
+</suite>

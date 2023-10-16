@@ -1,0 +1,56 @@
+title: tansfer_to_bank
+description: 256623062506827 -> ${account}
+
+replaceVariate: {
+  "${account}": "2215381176",
+  "${user}": "Nibby N Certifier",
+  "${amount}": "500"
+}
+
+testApi:
+  requestUrl: api/refactor/order/refactorCreateOrder
+  requestHeader:
+  reqeustBody: {
+    "activityId": "",
+    "businessSource": "PAYMENT",
+    "countryCode": "NG",
+    "customerEmail": "",
+    "dataBundleId": "",
+    "details": "",
+    "displayText": {
+      "toPhone": "${account}",
+      "toUser": "${user}",
+      "userInfo": "<font color=\"#1dcf9f\"><b>Access Bank ${account}</b></font>"
+    },
+    "expireTime": 0,
+    "fingerprintFeature": "",
+    "instruments": [ {
+      "payChannel": "BalancePayment"
+    } ],
+    "isUseAutoOptimal": false,
+    "isWithhold": false,
+    "message": "",
+    "newPackageCode": "",
+    "orderNo": "",
+    "payMethod": "",
+    "paymentAmount": {
+      "currency": "NGN",
+      "value": "${amount}"
+    },
+    "paymentPin": "1234",
+    "publicKey": "",
+    "recipientAccount": "${account}",
+    "recipientBankCode": "000014",
+    "recipientBankName": "Access Bank",
+    "recipientMobile": "",
+    "recipientName": "${user}",
+    "recipientPhoneNumber": "${account}",
+    "referCode": "",
+    "reference": "",
+    "serviceId": "bank",
+    "serviceType": "bank",
+    "snapshot": "",
+    "supportBiometrics": false,
+    "useMpos": false,
+    "voucherId": ""
+  }

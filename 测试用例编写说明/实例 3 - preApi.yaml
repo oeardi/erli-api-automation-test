@@ -1,0 +1,42 @@
+title: 被测试接口有前置依赖接口实例，重点关注【preDependentParameter】字段。
+description: 直接使用 “总代项目接口” 描述这个实例，且实例全部使用了 posDetail 接口（为了省事）。（包含两种场景：D 依赖 A B C，和 D 依赖 C，且 C 依赖 B，且 B 依赖 A）
+
+preApi:
+  - preRequestUrl: http://test.url.test.frontends.web.com/apiMd/posDetail
+    preRequestHeader:
+    preReqeustBody: { "merchantId": "156620102802876503", "aggregatorId": "256621083174385", "sn": "29608222021062400015" }
+    preDependentParameter: { "merchantName": "$data.merchantName" }
+    #【preDependentParameter】用来存放 “响应报文” 中的字段，
+    # 这个字段会拼装到下一个接口的 body 参数中。
+    # 如：
+    # 第 1 次请求，打印请求报文：{"password":"147258","role":"user","loginName":"2021090893","merchantLoginMethod":"mobile"}
+    # 保存响应报文的 merchantName 字段值，打印 [merchantName] 的值为：[Francisca Amaka Onyejekwe]。
+    preEncryptFlag: Y
+
+  - preRequestUrl: http://test.url.test.frontends.web.com/apiMd/posDetail
+    preRequestHeader:
+    preReqeustBody: { "merchantId": "156620102802876503", "aggregatorId": "256621083174385", "sn": "29608222021062400015", "test1": "$data.merchantName" }
+    preDependentParameter: { "currentMonthGtv": "$data.currentMonthGtv" }
+    # 第 2 次请求，打印请求报文：{"merchantId":"156620102802876503","aggregatorId":"256621083174385","sn":"29608222021062400015","test1":"Francisca Amaka Onyejekwe"}
+    # 可以看到，第 2 次请求报文中加入了 test1 这个参数，它的值是：[Francisca Amaka Onyejekwe]
+    # 第 2 次请求后，保存响应报文的 currentMonthGtv 字段值，打印 [currentMonthGtv] 的值为：[0.00]。
+    preEncryptFlag: Y
+
+  - preRequestUrl: http://test.url.test.frontends.web.com/apiMd/posDetail
+    preRequestHeader:
+    preReqeustBody: { "merchantId": "156620102802876503", "aggregatorId": "256621083174385", "sn": "29608222021062400015", "test2": "$data.currentMonthGtv"  }
+    preDependentParameter: { "currentMonthGtvIncreaseRate": "$data.currentMonthGtvIncreaseRate" }
+    # 第 3 次请求，打印请求报文：{"merchantId":"156620102802876503","aggregatorId":"256621083174385","sn":"29608222021062400015","test2":"0.00"}
+    # 这次请求报文中增加了 test2 参数，它的值是上一次响应的 currentMonthGtv 值 0.00。
+    # 第 3 次请求，保存了响应报文的 currentMonthGtvIncreaseRate 字段值，打印 [currentMonthGtvIncreaseRate] 的值为：[0.00]。
+    preEncryptFlag: Y
+
+#【testApi】关注【reqeustBody】
+testApi:
+  requestUrl: http://test.url.test.frontends.web.com/apiMd/posDetail
+  requestHeader:
+  reqeustBody: { "merchantId": "156620102802876503", "aggregatorId": "256621083174385", "sn": "29608222021062400015" }
+  # 这里同样粘贴接口请求时的日志，
+  # 打印请求报文：{"merchantId":"156620102802876503","aggregatorId":"256621083174385","sn":"29608222021062400015","currentMonthGtvIncreaseRate":"0.00","merchantName":"Francisca Amaka Onyejekwe","currentMonthGtv":"0.00"}
+  # 从报文中可以看到，【preApi】阶段保存的 3 个字段值，即：merchantName、currentMonthGtv 和 currentMonthGtvIncreaseRate，全部被加入到被测接口的请求报文中。
+  encryptFlag: Y

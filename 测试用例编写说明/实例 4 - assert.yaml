@@ -1,0 +1,38 @@
+title: 断言
+description: 目前支持的断言条件有 "="，"!="，"null"，"!null"，"contains" 五种。（断言逻辑编写在 BaseAssertOperateUtils 类中）
+
+testApi:
+  requestUrl: http://test.url.test.frontends.web.com/apiMd/aggregator_tool/merchant/posDetail
+  requestHeader:
+  reqeustBody: { "merchantId": "156620102802876503", "aggregatorId": "256621083174385", "sn": "29608222021062400015" }
+  encryptFlag: Y
+# 打印响应报文：（从日志复制）
+# {"code":"00000","message":"SUCCESSFUL","data":{"merchantName":"Francisca Amaka Onyejekwe","currentMonthGtv":"0.00",
+# "currentMonthGtvIncreaseRate":"0.00","transList":[{"dt":"2023-10-12","volume":"0","transaction":"0.00",
+# "transactionGapForLastDay":"0.00"},{"dt":"2023-10-11","volume":"0","transaction":"0.00","transactionGapForLastDay":"0.00"},
+# {"dt":"2023-10-10","volume":"0","transaction":"0.00","transactionGapForLastDay":"0.00"},{"dt":"2023-10-09",
+# "volume":"0","transaction":"0.00","transactionGapForLastDay":"0.00"},{"dt":"2023-10-08","volume":"0",
+# "transaction":"0.00","transactionGapForLastDay":"0.00"},{"dt":"2023-10-07","volume":"0","transaction":"0.00",
+# "transactionGapForLastDay":"0.00"},{"dt":"2023-10-06","volume":"0","transaction":"0.00","transactionGapForLastDay":"0.00"}],
+# "state":null}}
+
+
+#【asserts】结构说明：
+# valuePaht 获取响应报文中需要断言的字段
+# condition 判断条件（"="，"!="，"null","!null","contains"）
+# expect 预期值
+asserts:
+  - valuePath: "$code"
+    condition: "="
+    expect: "00000"
+  - valuePath: "$data.currentMonthGtv"
+    condition: "!="
+    expect: "1.00"
+  - valuePath: "$data.state"
+    condition: "null"
+  - valuePath: "$message"
+    condition: "!null"
+  - valuePath: "$data"
+    condition: "contains"
+    expect: "merchantName"
+#【注】支持多组断言。

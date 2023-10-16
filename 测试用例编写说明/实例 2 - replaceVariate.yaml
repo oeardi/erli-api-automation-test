@@ -1,0 +1,58 @@
+title: refactorCreateOrder 接口
+description: transfer_to 功能，由 156621090810859569 向 6110001086（256623091811377）转账 1000 奈拉。
+
+# 在【replaceVariate】中自定义 key: value，框架内部会将 requestBody 中的 key 替换成对应 value。
+# 注：key 建议定义为 #{keyName} 格式，使用时同样为 #{keyName} 格式。
+replaceVariate: {
+  "#{account}": "6110001086",
+  "#{user}": "test-1-4",
+  "#{amount}": "1000"
+}
+
+testApi:
+  requestUrl: api/refactor/order/refactorCreateOrder
+  requestHeader:
+  reqeustBody: {
+    "activityId": "",
+    "businessSource": "PAYMENT",
+    "countryCode": "NG",
+    "customerEmail": "",
+    "dataBundleId": "",
+    "details": "",
+    "displayText": {
+      "toPhone": "#{account}",
+      "toUser": "#{user}",
+      "userInfo": "<font color=\"#1dcf9f\"><b>#{account}</b></font>"
+    },
+    "expireTime": 0,
+    "fingerprintFeature": "",
+    "instruments": [ {
+      "payChannel": "BalancePayment"
+    } ],
+    "isUseAutoOptimal": false,
+    "isWithhold": false,
+    "message": "",
+    "newPackageCode": "",
+    "orderNo": "",
+    "payMethod": "",
+    "paymentAmount": {
+      "currency": "NGN",
+      "value": "#{amount}"
+    },
+    "paymentPin": "1234",
+    "publicKey": "",
+    "recipientAccount": "#{account}",
+    "recipientBankCode": "100004",
+    "recipientBankName": "",
+    "recipientMobile": "",
+    "recipientName": "#{user}",
+    "recipientPhoneNumber": "#{account}",
+    "referCode": "",
+    "reference": "",
+    "serviceId": "bank",
+    "serviceType": "bank",
+    "snapshot": "",
+    "supportBiometrics": false,
+    "useMpos": false,
+    "voucherId": ""
+  }

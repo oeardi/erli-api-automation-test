@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="ka_settlement" parallel="instances" thread-count="1">
+
+    <test name="transfer_to_256623061806818">
+        <parameter name="yamlFilePath"
+                   value="/test_case_yaml/test_senario_156/ka_settlement_256623061806818/transfer_to_256623061806818.yaml"/>
+        <classes>
+            <class name="com.apis.AutomatedTest"/>
+        </classes>
+    </test>
+
+    <test name="transfer_to_256623061806821">
+        <parameter name="yamlFilePath"
+                   value="/test_case_yaml/test_senario_156/ka_settlement_256623061806818/transfer_to_256623061806821.yaml"/>
+        <classes>
+            <class name="com.apis.AutomatedTest"/>
+        </classes>
+    </test>
+
+    <test name="transfer_to_256623061806822">
+        <parameter name="yamlFilePath"
+                   value="/test_case_yaml/test_senario_156/ka_settlement_256623061806818/transfer_to_256623061806822.yaml"/>
+        <classes>
+            <class name="com.apis.AutomatedTest"/>
+        </classes>
+    </test>
+
+    <test name="transfer_to_256623061806823">
+        <parameter name="yamlFilePath"
+                   value="/test_case_yaml/test_senario_156/ka_settlement_256623061806818/transfer_to_256623061806823.yaml"/>
+        <classes>
+            <class name="com.apis.AutomatedTest"/>
+        </classes>
+    </test>
+
+    <test name="transfer_to_256623061806824">
+        <parameter name="yamlFilePath"
+                   value="/test_case_yaml/test_senario_156/ka_settlement_256623061806818/transfer_to_256623061906824.yaml"/>
+        <classes>
+            <class name="com.apis.AutomatedTest"/>
+        </classes>
+    </test>
+
+    <test name="transfer_to_256623061806826">
+        <parameter name="yamlFilePath"
+                   value="/test_case_yaml/test_senario_156/ka_settlement_256623061806818/transfer_to_256623061906826.yaml"/>
+        <classes>
+            <class name="com.apis.AutomatedTest"/>
+        </classes>
+    </test>
+
+    <test name="transfer_to_256623091811377">
+        <parameter name="yamlFilePath"
+                   value="/test_case_yaml/test_senario_156/ka_settlement_256623061806818/transfer_to_256623091811377.yaml"/>
+        <classes>
+            <class name="com.apis.AutomatedTest"/>
+        </classes>
+    </test>
+
+
+    <listeners>
+        <listener class-name="com.config.ExtentTestNGIReporterListener"/>
+    </listeners>
+
+</suite>

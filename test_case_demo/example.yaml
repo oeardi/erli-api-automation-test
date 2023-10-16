@@ -1,0 +1,89 @@
+title: refactorCreateOrder
+description: test_run_xml/test_senario_156/debug_demo/example.yaml
+
+initDataSql: [ "balance@from table where account_type = '' and merchant_id = '';",
+               "amount@from ka_settlement_bill_withdraw where order_no = '';",
+               "select balance from table where account_type = '' and merchant_id = '';"
+]
+
+testApi:
+  requestUrl: api/refactor/order/refactorCreateOrder
+  requestHeader:
+  reqeustBody: {
+    "activityId": "",
+    "businessSource": "PAYMENT",
+    "countryCode": "NG",
+    "customerEmail": "",
+    "dataBundleId": "",
+    "details": "",
+    "displayText": {
+      "toPhone": "+2349552597530",
+      "toUser": "test-1-4",
+      "userInfo": "<font color=\"#1dcf9f\"><b>+2349552597530</b></font>"
+    },
+    "expireTime": 0,
+    "fingerprintFeature": "",
+    "instruments": [ {
+      "payChannel": "BalancePayment"
+    } ],
+    "isUseAutoOptimal": false,
+    "isWithhold": false,
+    "message": "",
+    "newPackageCode": "",
+    "orderNo": "",
+    "payMethod": "",
+    "paymentAmount": {
+      "currency": "NGN",
+      "value": "500"
+    },
+    "paymentPin": "1234",
+    "publicKey": "",
+    "recipientAccount": "+2349552597530",
+    "recipientBankCode": "100004",
+    "recipientBankName": "",
+    "recipientMobile": "",
+    "recipientName": "test-1-4",
+    "recipientPhoneNumber": "+2349552597530",
+    "referCode": "",
+    "reference": "",
+    "serviceId": "bank",
+    "serviceType": "bank",
+    "snapshot": "",
+    "supportBiometrics": false,
+    "useMpos": false,
+    "voucherId": ""
+  }
+  preEncryptFlag: N
+
+asserts:
+  - valuePath: "$code"
+    condition: "="
+    expect: "00000"
+  - valuePath: "$message"
+    condition: "="
+    expect: "SUCCESSFUL"
+  - valuePath: "$data.orderNo"
+    condition: "!null"
+  - valuePath: "$data"
+    condition: "contains"
+    expect: "orderNo"
+  - valuePath: "0"
+    condition: "amount"
+  - valuePath: "50000"
+    condition: "balance"
+
+validationDataSql: [
+  "balance@from table where account_type = '' and merchant_id = '';",
+  "amount@from ka_settlement_bill_withdraw where order_no = '';",
+  "select balance from table where account_type = '' and merchant_id = '';",
+  "order_no@from user_transfer_user_record order by create_time desc limit 1;",
+  "$data.orderNo@select * from ka_settlement_bill_withdraw where order_no like '${}%';"
+]
+
+assertAmount:
+  - transAmount: "$data.orderNo@select amount from user_transfer_user_record where order_no like '${}%';"
+    transFee: "0"
+    commission: ""
+    otherFee: ""
+    keyType: "balance"
+    fundFlow: "+"

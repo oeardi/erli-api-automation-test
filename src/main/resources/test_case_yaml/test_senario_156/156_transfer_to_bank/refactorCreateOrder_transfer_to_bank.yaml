@@ -1,0 +1,88 @@
+title: transfer_to_bank
+description: 156621090810859569 -> 2215381176
+
+initDataSql: [
+  "UPDATE account_user SET signature = NULL where user_id = '' and account_type = '';",
+  "UPDATE account_user SET balance = 10000000 where user_id = '' and account_type = '';",
+  "balance@from account_user where account_type = '' and user_id = '';"
+]
+
+replaceVariate: {
+  "${account}": "2215381176",
+  "${user}": "Nibby N Certifier",
+  "${amount}": "500"
+}
+
+testApi:
+  requestUrl: api/refactor/order/refactorCreateOrder
+  requestHeader:
+  reqeustBody: {
+    "activityId": "",
+    "businessSource": "PAYMENT",
+    "countryCode": "NG",
+    "customerEmail": "",
+    "dataBundleId": "",
+    "details": "",
+    "displayText": {
+      "toPhone": "${account}",
+      "toUser": "${user}",
+      "userInfo": "<font color=\"#1dcf9f\"><b>ACCESSBANK ${account}</b></font>"
+    },
+    "expireTime": 0,
+    "fingerprintFeature": "",
+    "instruments": [ {
+      "payChannel": "BalancePayment"
+    } ],
+    "isUseAutoOptimal": false,
+    "isWithhold": false,
+    "message": "",
+    "newPackageCode": "",
+    "orderNo": "",
+    "payMethod": "",
+    "paymentAmount": {
+      "currency": "NGN",
+      "value": "${amount}"
+    },
+    "paymentPin": "1234",
+    "publicKey": "",
+    "recipientAccount": "${account}",
+    "recipientBankCode": "000014",
+    "recipientBankName": "ACCESSBANK",
+    "recipientMobile": "",
+    "recipientName": "${user}",
+    "recipientPhoneNumber": "${account}",
+    "referCode": "",
+    "reference": "",
+    "serviceId": "bank",
+    "serviceType": "bank",
+    "snapshot": "",
+    "supportBiometrics": false,
+    "useMpos": false,
+    "voucherId": ""
+  }
+  preEncryptFlag:
+
+validationDataSql: [
+  "balance@from account_user where account_type = '' and user_id = '';"
+]
+
+asserts:
+  - valuePath: "$code"
+    condition: "="
+    expect: "00000"
+  - valuePath: "$message"
+    condition: "="
+    expect: "SUCCESSFUL"
+  - valuePath: "$data.orderNo"
+    condition: "!null"
+  - valuePath: "$data"
+    condition: "contains"
+    expect: "orderNo"
+
+assertAmount:
+  - transAmount: "$data.orderNo@select amount from user_transfer_card_record where order_no like '${}%';"
+    transFee: "$data.orderNo@select fee from user_transfer_card_record where order_no like '${}%';"
+    commission: ""
+    otherFee: ""
+    keyType: "balance"
+    fundFlow: "-"

@@ -1,0 +1,63 @@
+title: 测试用例标题
+
+description: 测试用例描述
+
+#【initDataSql】初始化数据 SQL
+# 主要实现功能：
+# 1）初始化测试数据，数据角度确保用例运行正常；
+# 2）缓存交易发生前 amount 或 balance 的值并，用于交易发生后的账务金额校验。
+# 详情参见《实例 5 - initDataSql.yaml》说明文档。
+initDataSql: [
+]
+
+
+#【preApi】被测接口所依赖的前置接口
+# 支持两种形式的前置接口依赖：
+# 1）被测接口有多个前置接口依赖（如：D 依赖 A B C）；
+# 2）被测接口有多个前置接口依赖，且前置接口之间有依赖关系（如：D 依赖 C，且 C 依赖 B，且 B 依赖 A）。
+# 详情参见《实例 3 - preApi.yaml》说明文档。
+preApi:
+  - preRequestUrl:
+    preRequestHeader: ｛｝
+    preReqeustBody: ｛｝
+    preEncryptFlag:
+    preDependentParameter:
+
+
+#【replaceVariate】替换接口请求报文体的指定参数
+# 详情参见《实例 2 - replaceVariate.yaml》说明文档。
+replaceVariate: ｛｝
+
+
+#【testApi】描述被测接口请求信息
+# 详情参见《实例 1 - testApi.yaml》说明文档。
+testApi:
+  requestUrl:
+  requestHeader:
+  reqeustBody:
+  preEncryptFlag:
+
+
+#【asserts】响应断言（支持多组断言）
+# 详情参见《实例 4 - assert.yaml》说明文档。
+asserts:
+  - valuePath:
+    condition:
+    expect:
+
+
+#【validationDataSql】缓存交易发生后的 amount 或 balance，提供给【assertAmount】部分进行账户余额校验。
+# 详情参见《实例 5 - initDataSql.yaml》说明文档。
+validationDataSql: [
+]
+
+
+#【assertAmount】定制功能，主要用于验证交易发生后的账户余额。
+# 详情参见《实例 5 - initDataSql.yaml》说明文档。
+assertAmount:
+  - transAmount:
+    transFee:
+    commission:
+    otherFee:
+    keyType:
+    fundFlow:

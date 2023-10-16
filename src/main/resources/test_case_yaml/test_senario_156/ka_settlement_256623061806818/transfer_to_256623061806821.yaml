@@ -1,0 +1,56 @@
+title: transfer_to ${account}
+description: 156621090810859569 -> 256623061806821
+
+replaceVariate: {
+  "${account}": "6110000600",
+  "${user}": "test-1-1",
+  "${amount}": "500"
+}
+
+testApi:
+  requestUrl: api/refactor/order/refactorCreateOrder
+  requestHeader:
+  reqeustBody: {
+    "activityId": "",
+    "businessSource": "PAYMENT",
+    "countryCode": "NG",
+    "customerEmail": "",
+    "dataBundleId": "",
+    "details": "",
+    "displayText": {
+      "toPhone": "${account}",
+      "toUser": "${user}",
+      "userInfo": "<font color=\"#1dcf9f\"><b>${account}</b></font>"
+    },
+    "expireTime": 0,
+    "fingerprintFeature": "",
+    "instruments": [ {
+      "payChannel": "BalancePayment"
+    } ],
+    "isUseAutoOptimal": false,
+    "isWithhold": false,
+    "message": "",
+    "newPackageCode": "",
+    "orderNo": "",
+    "payMethod": "",
+    "paymentAmount": {
+      "currency": "NGN",
+      "value": "${amount}"
+    },
+    "paymentPin": "1234",
+    "publicKey": "",
+    "recipientAccount": "${account}",
+    "recipientBankCode": "100004",
+    "recipientBankName": "",
+    "recipientMobile": "",
+    "recipientName": "${user}",
+    "recipientPhoneNumber": "${account}",
+    "referCode": "",
+    "reference": "",
+    "serviceId": "bank",
+    "serviceType": "bank",
+    "snapshot": "",
+    "supportBiometrics": false,
+    "useMpos": false,
+    "voucherId": ""
+  }

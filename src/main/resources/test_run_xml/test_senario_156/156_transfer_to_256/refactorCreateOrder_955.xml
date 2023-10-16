@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="refactorCreateOrder_955">
+
+    <test name="156_transfer_to_955">
+        <parameter name="yamlFilePath" value="/test_case_yaml/test_senario_156/156_transfer_to_256/refactorCreateOrder_955.yaml"/>
+        <classes>
+            <class name="com.apis.AutomatedTest"/>
+        </classes>
+    </test>
+
+
+    <listeners>
+        <listener class-name="com.config.ExtentTestNGIReporterListener"/>
+    </listeners>
+
+</suite>

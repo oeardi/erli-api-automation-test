@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="refactorCreateOrder_256_transfer_to_bank">
+
+    <test name="256_transfer_to_bank">
+        <parameter name="yamlFilePath" value="/test_case_yaml/test_senario_256/256_transfer_to_bank/refactorCreateOrder_transfer_to_bank.yaml"/>
+        <classes>
+            <class name="com.apis.AutomatedTest"/>
+        </classes>
+    </test>
+
+
+    <listeners>
+        <listener class-name="com.config.ExtentTestNGIReporterListener"/>
+    </listeners>
+
+</suite>

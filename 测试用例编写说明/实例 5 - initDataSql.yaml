@@ -1,0 +1,45 @@
+title: refactorCreateOrder 接口
+description: transfer 功能，由 156621090810859569 向 6122781680（256623091811377）转账。
+
+#【initDataSql】初始化数据，通常执行 update 或 delete 数据，用于恢复测试环境数据。
+initDataSql: [
+  "UPDATE tabler SET signature = NULL where user_id = '' and account_type = '';",
+  "UPDATE tabler SET balance = 10000000 where user_id = '' and account_type = '';",
+
+  #【二粒】支持按字段查询，但要按固定格式编写 SQL 语句。即：“查询字段”@“from ...” 的格式。
+  # 当指定字段是 amount 或 balance 时，【二粒】会缓存 amount 或 balance，保留交易前金额，用于交易后的金额验证。
+  # 另，其实【二粒】目前仅支持 amount 和 balance 的数据保存与验证，保留其它字段尚无处理逻辑。
+  "balance@from table where account_type = '' and merchant_id = '';"
+
+]
+
+testApi: 【testApi】为节省篇幅，跳过。在实际测试如果【testApi】没有内容，则会直接结束测试。
+
+#【validationDataSql】保留交易后金额，与【initDataSql】相对应。同样的需要按固定格式编写 SQL 语句。
+validationDataSql: [
+  "balance@from table where account_type = '' and merchant_id = '';"
+]
+
+#【assertAmount】验证金额
+# 此部分是 api-user 的定制化功能，与业务关联性较强。同样需要按固定格式编写 SQL 语句，格式为：jsonpath@select .. from .. where .. like ${}
+assertAmount:
+  # 字段说明：
+  # transAmount 交易金额，transFee 交易手续费，commission 佣金，otherFee 其他费用
+  - transAmount: "$data.orderNo@select amount from user_transfer_user_record where order_no like '${}%';"
+    transFee: "$data.orderNo@select fee_amount from user_transfer_user_record where order_no like '${}%';"
+    commission: ""
+    otherFee: ""
+    # keyType 取值与【initDataSql】和【validationDataSql】的 SQL 有关，即：
+    # SQL 是 balance@from，则 keyType 为 "balance"；SQL 是 amount@from，则 keyType 为 "amount"。
+    keyType: "balance"
+    # fundFlow 资金方向，+ 表示这笔交易是入金，- 表示这笔交易是出金。
+    fundFlow: "+"
+# 打印运行日志：
+# [调试信息] [assertEquals] before 期初金额：[100000]
+# [调试信息] [assertEquals] transAmount 交易金额：[50000]
+# [调试信息] [assertEquals] transFee 交易手续费：[0]
+# [调试信息] [assertEquals] commission 佣金：[0]
+# [调试信息] [assertEquals] otherFee 其它手续费：[0]
+# [调试信息] [assertEquals] fundFlow 资金方向：[+]
+# [调试信息] [assertEquals] after 期末金额：[150000]
+# [调试信息] [assertEquals] [断言通过] [100000 + 50000 - 0 - 0 - 0 = 150000] 等于预期的：[150000]
