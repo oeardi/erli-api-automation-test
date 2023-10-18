@@ -27,14 +27,14 @@ public class CommonData {
         String PRE_API = "preApi";
         String PRE_REQUEST_URL = "preRequestUrl";
         String PRE_REQUEST_HEADER = "preRequestHeader";
-        String PRE_REQUEST_BODY = "preReqeustBody";
+        String PRE_REQUEST_BODY = "preRequestBody";
         String PRE_ENCRYPT_FLAG = "preEncryptFlag";
         String PRE_DEPENDENT_PARAMETER = "preDependentParameter";
         String REPLACE_VARIATE = "replaceVariate";
         String TEST_API = "testApi";
         String REQUEST_URL = "requestUrl";
         String REQUEST_HEADER = "requestHeader";
-        String REQUEST_BODY = "reqeustBody";
+        String REQUEST_BODY = "requestBody";
         String ENCRYPT_FLAG = "encryptFlag";
 
         String VALIDATION_DATA_SQL = "validationDataSql";

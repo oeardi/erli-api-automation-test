@@ -4,7 +4,7 @@ description: 156621090810859569 -> transfer 256623091811377
 testApi:
   requestUrl: api/refactor/order/refactorCreateOrder
   requestHeader:
-  reqeustBody: {
+  requestBody: {
     "activityId": "",
     "businessSource": "PAYMENT",
     "countryCode": "NG",

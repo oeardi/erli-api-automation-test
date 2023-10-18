@@ -4,7 +4,7 @@ description: 目前支持的断言条件有 "="，"!="，"null"，"!null"，"con
 testApi:
   requestUrl: http://test.url.test.frontends.web.com/apiMd/aggregator_tool/merchant/posDetail
   requestHeader:
-  reqeustBody: { "merchantId": "156620102802876503", "aggregatorId": "256621083174385", "sn": "29608222021062400015" }
+  requestBody: { "merchantId": "156620102802876503", "aggregatorId": "256621083174385", "sn": "29608222021062400015" }
   encryptFlag: Y
 # 打印响应报文：（从日志复制）
 # {"code":"00000","message":"SUCCESSFUL","data":{"merchantName":"Francisca Amaka Onyejekwe","currentMonthGtv":"0.00",

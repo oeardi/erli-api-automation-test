@@ -4,7 +4,7 @@ description: test_run_xml/test_senario_156/debug_demo/demo_test.yaml
 preApis:
   - preRequestUrl: api/core/refactor/security/beforeLoginSecurityValidation
     preRequestHeader:
-    preReqeustBody: {
+    preRequestBody: {
       "loginName": "2021090893",
       "password": "147258",
       "merchantLoginMethod": "mobile",
@@ -16,7 +16,7 @@ preApis:
 testApi:
   requestUrl: api/core/refactor/security/loginSecurityValidation
   requestHeader:
-  reqeustBody: {
+  requestBody: {
     "merchantLoginMethod": "mobile",
     "password": "147258",
     "loginName": "2021090893",

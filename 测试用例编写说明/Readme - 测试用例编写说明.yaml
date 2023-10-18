@@ -19,7 +19,7 @@ initDataSql: [
 preApi:
   - preRequestUrl:
     preRequestHeader: ｛｝
-    preReqeustBody: ｛｝
+    preRequestBody: ｛｝
     preEncryptFlag:
     preDependentParameter:
 

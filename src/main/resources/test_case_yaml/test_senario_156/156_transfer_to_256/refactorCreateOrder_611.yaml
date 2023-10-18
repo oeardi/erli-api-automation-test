@@ -14,7 +14,7 @@ replaceVariate: {
 testApi:
   requestUrl: api/refactor/order/refactorCreateOrder
   requestHeader:
-  reqeustBody: {
+  requestBody: {
     "activityId": "",
     "businessSource": "PAYMENT",
     "countryCode": "NG",

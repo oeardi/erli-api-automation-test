@@ -4,7 +4,7 @@ description: transfer_to 功能，由 156621090810859569 向 6110001086（256623
 testApi:
   requestUrl: api/refactor/order/refactorCreateOrder
   requestHeader:
-  reqeustBody: {
+  requestBody: {
     "activityId": "",
     "businessSource": "PAYMENT",
     "countryCode": "NG",

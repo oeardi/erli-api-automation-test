@@ -9,7 +9,7 @@ initDataSql: [ "balance@from table where account_type = '' and merchant_id = '';
 testApi:
   requestUrl: api/refactor/order/refactorCreateOrder
   requestHeader:
-  reqeustBody: {
+  requestBody: {
     "activityId": "",
     "businessSource": "PAYMENT",
     "countryCode": "NG",
